@@ -23,7 +23,40 @@ overflow:hidden;
 color:white;
 }
 
-/* CINEMATIC LOVE REVEAL */
+/* INTRO SCREEN */
+
+#intro{
+position:absolute;
+width:100%;
+height:100%;
+display:flex;
+justify-content:center;
+align-items:center;
+flex-direction:column;
+background:#0f2027;
+z-index:10;
+text-align:center;
+}
+
+#introText{
+font-size:28px;
+font-family:'Great Vibes',cursive;
+margin-bottom:30px;
+}
+
+/* BUTTON */
+
+#openBtn{
+padding:15px 30px;
+font-size:18px;
+border:none;
+border-radius:30px;
+background:#ff4b7d;
+color:white;
+cursor:pointer;
+}
+
+/* LOVE REVEAL */
 
 #loveReveal{
 position:fixed;
@@ -61,46 +94,6 @@ transform:translate(-50%,-50%) scale(1);
 opacity:1;
 }
 
-}
-
-/* STARS */
-
-.star{
-position:absolute;
-width:2px;
-height:2px;
-background:white;
-animation:twinkle 2s infinite alternate;
-}
-
-@keyframes twinkle{
-from{opacity:0.3}
-to{opacity:1}
-}
-
-/* INTRO */
-
-#intro{
-position:absolute;
-width:100%;
-height:100%;
-display:flex;
-justify-content:center;
-align-items:center;
-flex-direction:column;
-background:#0f2027;
-z-index:5;
-text-align:center;
-}
-
-#openBtn{
-padding:15px 30px;
-font-size:18px;
-border:none;
-border-radius:30px;
-background:#ff4b7d;
-color:white;
-cursor:pointer;
 }
 
 /* CARD */
@@ -165,7 +158,7 @@ color:white;
 cursor:pointer;
 }
 
-/* PETALS RAIN */
+/* PETALS */
 
 .petal{
 position:absolute;
@@ -176,6 +169,21 @@ animation:fall linear infinite;
 
 @keyframes fall{
 to{transform:translateY(110vh);}
+}
+
+/* STARS */
+
+.star{
+position:absolute;
+width:2px;
+height:2px;
+background:white;
+animation:twinkle 2s infinite alternate;
+}
+
+@keyframes twinkle{
+from{opacity:0.3}
+to{opacity:1}
 }
 
 /* PROPOSAL */
@@ -220,8 +228,7 @@ color:white;
 <div id="loveReveal">I Love You Baby ❤️</div>
 
 <div id="intro">
-<h2>Hey Baby 💌</h2>
-<p>I made something for you</p>
+<div id="introText"></div>
 <button id="openBtn" onclick="openGift()">Open your surprise ❤️</button>
 </div>
 
@@ -258,19 +265,41 @@ color:white;
 
 <script>
 
+/* INTRO TYPEWRITER */
+
+const introMessage="Hey Baby 💌 I made something for you...";
+let introIndex=0;
+
+function typeIntro(){
+
+if(introIndex<introMessage.length){
+
+document.getElementById("introText").innerHTML+=introMessage.charAt(introIndex);
+
+introIndex++;
+
+setTimeout(typeIntro,50);
+
+}
+
+}
+
+typeIntro();
+
 /* OPEN */
 
 function openGift(){
 
 document.getElementById("intro").style.display="none";
 document.getElementById("card").style.display="block";
+
 document.getElementById("music").play();
 
 typeWriter();
 
 }
 
-/* TYPEWRITER */
+/* TYPEWRITER MESSAGE */
 
 const text="Baby, I saw this flower today and it reminded me of you. Bright, beautiful, and the most special person in my life ❤️";
 
@@ -293,7 +322,9 @@ setTimeout(typeWriter,50);
 /* PROPOSAL */
 
 function showProposal(){
+
 document.getElementById("proposal").style.display="flex";
+
 }
 
 function accepted(){
@@ -369,5 +400,4 @@ document.body.appendChild(star);
 </script>
 
 </body>
-
 </html>
