@@ -1,0 +1,372 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>For My Baby ❤️</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500&family=Great+Vibes&display=swap" rel="stylesheet">
+
+<style>
+
+body{
+margin:0;
+font-family:'Poppins',sans-serif;
+height:100vh;
+background:linear-gradient(180deg,#0f2027,#203a43,#2c5364);
+display:flex;
+justify-content:center;
+align-items:center;
+overflow:hidden;
+color:white;
+}
+
+/* CINEMATIC LOVE REVEAL */
+
+#loveReveal{
+position:fixed;
+top:50%;
+left:50%;
+transform:translate(-50%,-50%) scale(0);
+background:linear-gradient(45deg,#ff4b7d,#ff7fa6);
+padding:25px 45px;
+border-radius:30px;
+font-family:'Great Vibes',cursive;
+font-size:42px;
+box-shadow:0 0 30px rgba(255,105,180,0.8);
+opacity:0;
+z-index:20;
+}
+
+#loveReveal.show{
+animation:cinematicReveal 1.2s forwards;
+}
+
+@keyframes cinematicReveal{
+
+0%{
+opacity:0;
+transform:translate(-50%,-50%) scale(0.2);
+}
+
+60%{
+opacity:1;
+transform:translate(-50%,-50%) scale(1.15);
+}
+
+100%{
+transform:translate(-50%,-50%) scale(1);
+opacity:1;
+}
+
+}
+
+/* STARS */
+
+.star{
+position:absolute;
+width:2px;
+height:2px;
+background:white;
+animation:twinkle 2s infinite alternate;
+}
+
+@keyframes twinkle{
+from{opacity:0.3}
+to{opacity:1}
+}
+
+/* INTRO */
+
+#intro{
+position:absolute;
+width:100%;
+height:100%;
+display:flex;
+justify-content:center;
+align-items:center;
+flex-direction:column;
+background:#0f2027;
+z-index:5;
+text-align:center;
+}
+
+#openBtn{
+padding:15px 30px;
+font-size:18px;
+border:none;
+border-radius:30px;
+background:#ff4b7d;
+color:white;
+cursor:pointer;
+}
+
+/* CARD */
+
+.card{
+display:none;
+background:rgba(255,255,255,0.15);
+backdrop-filter:blur(12px);
+border:1px solid rgba(255,255,255,0.2);
+padding:25px;
+border-radius:20px;
+text-align:center;
+box-shadow:0 15px 40px rgba(0,0,0,0.4);
+max-width:350px;
+z-index:2;
+}
+
+/* FLOWER */
+
+.imageBox{
+border-radius:15px;
+padding:4px;
+background:linear-gradient(45deg,#ff4b7d,#ff9a9e,#ffd3a5);
+box-shadow:0 0 10px #ff4b7d,0 0 20px #ff9a9e,0 0 30px #ffd3a5;
+}
+
+.imageBox img{
+width:100%;
+border-radius:12px;
+display:block;
+object-fit:cover;
+transform:scale(0);
+animation:bloom 2s forwards;
+}
+
+@keyframes bloom{
+to{transform:scale(1);}
+}
+
+h1{
+font-family:'Great Vibes',cursive;
+font-size:38px;
+color:#ffd1dc;
+}
+
+/* TYPEWRITER */
+
+#message{
+margin-top:10px;
+font-size:17px;
+}
+
+/* BUTTON */
+
+.moreBtn{
+margin-top:15px;
+padding:10px 20px;
+border:none;
+border-radius:20px;
+background:#ff4b7d;
+color:white;
+cursor:pointer;
+}
+
+/* PETALS RAIN */
+
+.petal{
+position:absolute;
+top:-10px;
+font-size:22px;
+animation:fall linear infinite;
+}
+
+@keyframes fall{
+to{transform:translateY(110vh);}
+}
+
+/* PROPOSAL */
+
+#proposal{
+position:fixed;
+top:0;
+left:0;
+width:100%;
+height:100%;
+background:rgba(0,0,0,0.7);
+display:none;
+justify-content:center;
+align-items:center;
+z-index:10;
+}
+
+.proposalBox{
+background:white;
+color:black;
+padding:30px;
+border-radius:20px;
+text-align:center;
+max-width:300px;
+}
+
+.proposalBtn{
+margin:10px;
+padding:10px 20px;
+border:none;
+border-radius:20px;
+cursor:pointer;
+background:#ff4b7d;
+color:white;
+}
+
+</style>
+</head>
+
+<body>
+
+<div id="loveReveal">I Love You Baby ❤️</div>
+
+<div id="intro">
+<h2>Hey Baby 💌</h2>
+<p>I made something for you</p>
+<button id="openBtn" onclick="openGift()">Open your surprise ❤️</button>
+</div>
+
+<audio id="music" loop>
+<source src="kalyani.mp3" type="audio/mpeg">
+</audio>
+
+<div class="card" id="card">
+
+<h1>For My Baby 🌼</h1>
+
+<div class="imageBox">
+<img src="flower.jpg">
+</div>
+
+<p id="message"></p>
+
+<button class="moreBtn" onclick="showProposal()">One more thing 💍</button>
+
+</div>
+
+<div id="proposal">
+
+<div class="proposalBox">
+
+<h2>Will you stay with me forever baby? 💍</h2>
+
+<button class="proposalBtn" onclick="accepted()">Yes ❤️</button>
+<button class="proposalBtn" onclick="accepted()">Of course 💍</button>
+
+</div>
+
+</div>
+
+<script>
+
+/* OPEN */
+
+function openGift(){
+
+document.getElementById("intro").style.display="none";
+document.getElementById("card").style.display="block";
+document.getElementById("music").play();
+
+typeWriter();
+
+}
+
+/* TYPEWRITER */
+
+const text="Baby, I saw this flower today and it reminded me of you. Bright, beautiful, and the most special person in my life ❤️";
+
+let i=0;
+
+function typeWriter(){
+
+if(i<text.length){
+
+document.getElementById("message").innerHTML+=text.charAt(i);
+
+i++;
+
+setTimeout(typeWriter,50);
+
+}
+
+}
+
+/* PROPOSAL */
+
+function showProposal(){
+document.getElementById("proposal").style.display="flex";
+}
+
+function accepted(){
+
+document.getElementById("proposal").style.display="none";
+
+burstPetals();
+
+setTimeout(()=>{
+document.getElementById("loveReveal").classList.add("show");
+},600);
+
+}
+
+/* PETALS BURST */
+
+function burstPetals(){
+
+for(let i=0;i<40;i++){
+
+const petal=document.createElement("div");
+
+petal.innerHTML="🌸";
+
+petal.style.position="absolute";
+petal.style.left=Math.random()*100+"vw";
+petal.style.top=Math.random()*100+"vh";
+petal.style.fontSize="25px";
+
+document.body.appendChild(petal);
+
+}
+
+}
+
+/* PETALS RAIN */
+
+function createPetal(){
+
+const petal=document.createElement("div");
+
+petal.classList.add("petal");
+
+petal.innerHTML="🌸";
+
+petal.style.left=Math.random()*100+"vw";
+
+petal.style.animationDuration=(3+Math.random()*5)+"s";
+
+document.body.appendChild(petal);
+
+setTimeout(()=>petal.remove(),8000);
+
+}
+
+setInterval(createPetal,300);
+
+/* STARS */
+
+for(let i=0;i<80;i++){
+
+const star=document.createElement("div");
+
+star.classList.add("star");
+
+star.style.left=Math.random()*100+"vw";
+star.style.top=Math.random()*100+"vh";
+
+document.body.appendChild(star);
+
+}
+
+</script>
+
+</body>
+</html>
